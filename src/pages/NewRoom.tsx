@@ -1,5 +1,7 @@
 import { Link, useHistory } from 'react-router-dom'
 import { FormEvent, useState } from 'react'
+import toast from 'react-hot-toast';
+
 
 import illustrationImg from '../assets/images/illustration.svg';
 import logoImg from '../assets/images/logo.svg';
@@ -19,6 +21,7 @@ export function NewRoom () {
     event.preventDefault();
 
     if (newRoom.trim() === '') {
+      toast.error("Você não preencheu as informações necessárias.")
       return;
     }
 
@@ -27,9 +30,9 @@ export function NewRoom () {
     const firebaseRoom = await roomRef.push({
       title: newRoom,
       authorId: user?.id,
-      
+
     })
-      
+
     history.push(`/rooms/${firebaseRoom.key}`)
   }
 
@@ -37,13 +40,23 @@ export function NewRoom () {
     <div id= "page-auth">
       <aside>
         <img src={illustrationImg} alt="ilustração simbolizando perguntas e respostas" />
+
         <strong>Crie salas de Q&amp;A ao-vivo</strong>
+
         <p>Tire as dúvidas da sua audiência em tempo real</p>
       </aside>
+
       <main>
         <div className= "main-content">
-          <img src={logoImg} alt="Letmeask" />                       
-          <h2>Criar uma nova sala</h2>          
+          <img src={logoImg} alt="Letmeask" />
+
+          <div className= "user-profile">
+            <img src={user?.avatar} alt={user?.name} />
+
+            <span>{user?.name}</span>
+          </div>
+
+          <h2>Criar uma nova sala</h2>
           <form onSubmit= {handleCreateRoom}>
             <input
              type="text"
@@ -51,11 +64,14 @@ export function NewRoom () {
              onChange= {event => setNewRoom(event.target.value)}
              value={newRoom}
              />
+
              <Button type= "submit">
               Criar sala
              </Button>
           </form>
-          <p>Quer entrar em uma sala existente? <Link to="/">clique aqui</Link>
+
+          <p>
+            Quer entrar em uma sala existente? <Link to="/">clique aqui</Link>
           </p>
         </div>
       </main>

@@ -1,5 +1,6 @@
 import { FormEvent, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom'
+import toast from 'react-hot-toast';
 
 import logoImg from '../assets/images/logo.svg'
 
@@ -51,7 +52,7 @@ export function Room () {
     roomRef.on('value', room => {
       const databaseRoom = room.val();
       const firebaseQuestions: FirebaseQuestions = databaseRoom.questions ?? {};
-      
+
       const parsedQuestions = Object.entries(firebaseQuestions).map(([key, value]) => {
         return{
           id: key,
@@ -111,7 +112,7 @@ export function Room () {
         </div>
 
         <form onSubmit= {handleSendQuestion}>
-          <textarea 
+          <textarea
           placeholder="O que você quer perguntar"
           onChange={event => setNewQuestion(event.target.value)}
           value= {newQuestion}
@@ -130,7 +131,7 @@ export function Room () {
               Enviar pergunta
             </Button>
           </div>
-        </form>        
+        </form>
       </main>
     </div>
   );
