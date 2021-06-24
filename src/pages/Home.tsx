@@ -10,7 +10,7 @@ import { useAuth } from '../hooks/useAuth';
 import { database } from '../services/firebase';
 
 import '../styles/auth.scss';
-import { Room } from './Room';
+import toast from 'react-hot-toast';
 
 export function Home () {
   const history = useHistory();
@@ -35,7 +35,14 @@ export function Home () {
     const roomRef = await database.ref(`rooms/${roomCode}`).get();
 
     if (!roomRef.exists()){
-      alert('Room does not exists.');
+      toast.error('Esta sala não existe')
+      //alert('Room does not exists.');
+      return;
+    }
+
+    if (roomRef.val().endedAt) {
+      toast.error('Esta sala já foi finalizada')
+      //alert('Room already closed')
       return;
     }
 
@@ -46,30 +53,43 @@ export function Home () {
     <div id= "page-auth">
       <aside>
         <img src={illustrationImg} alt="ilustração simbolizando perguntas e respostas" />
+
         <strong>Crie salas de Q&amp;A ao-vivo</strong>
+
         <p>Tire as dúvidas da sua audiência em tempo real</p>
       </aside>
+
       <main>
         <div className= "main-content">
+
           <img src={logoImg} alt="Letmeask" />
+
           <button onClick={handleCreateRoom} className= "create-room">
+
             <img src={googleImg} alt="Logo do Google" />
+
             Crie sua sala com o Google
+
           </button>
+
           <div className= "separator">ou entre em uma sala</div>
+
           <form onSubmit={handleJoinRoom}>
+
             <input
              type="text"
              placeholder="Digite o código da sala"
              onChange= {event => setRoomCode(event.target.value)}
              value= {roomCode}
              />
-             <Button type= "submit">
-              Entrar na sala
-             </Button>
+
+             <Button isOutlined type= "submit">Entrar na sala</Button>
+
           </form>
         </div>
       </main>
     </div>
   )
 }
+
+

@@ -12,6 +12,16 @@
 
       >img {
         max-height: 45px;
+        gap: 16px;
+      }
+
+      >div {
+        display: flex;
+        gap: 16px;
+
+        button {
+          height: 40px;
+        }
       }
     }
   }
@@ -28,7 +38,7 @@
       h1 {
         font-family: 'Poppins', sans-serif;
         font-size: 24px;
-        color: #29292e;        
+        color: #29292e;
       }
 
       span {
@@ -67,8 +77,8 @@
           img {
             width: 32px;
             height: 32px;
-            border-radius: 50%;            
-          }  
+            border-radius: 50%;
+          }
 
           >span {
             margin-left: 8px;
@@ -96,6 +106,10 @@
           }
         }
       }
+    }
+
+    .question-list {
+      margin-top: 32px;
     }
   }
 }

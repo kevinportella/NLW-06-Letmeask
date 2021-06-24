@@ -5,6 +5,7 @@ import toast from 'react-hot-toast';
 
 import illustrationImg from '../assets/images/illustration.svg';
 import logoImg from '../assets/images/logo.svg';
+
 import { Button } from '../components/Button';
 import { database } from '../services/firebase';
 import { useAuth } from '../hooks/useAuth';
@@ -65,7 +66,7 @@ export function NewRoom () {
              value={newRoom}
              />
 
-             <Button type= "submit">
+             <Button isOutlined type= "submit">
               Criar sala
              </Button>
           </form>
