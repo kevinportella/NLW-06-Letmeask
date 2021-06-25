@@ -39,6 +39,7 @@ $ yarn
 # Start the project 
 $ yarn start
 ```
+This project has interaction with firebase.
 
 ## 📝 License
 
