@@ -39,7 +39,7 @@ $ yarn start
 ```
 This project has interaction with firebase.
 
-## 📝 License
+## License:
 
 This project is under the MIT license. See the file [LICENSE](LICENSE.md) for more details.
 
