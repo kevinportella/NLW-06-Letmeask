@@ -19,7 +19,7 @@ type RoomParams = {
 }
 
 export function Room () {
-  const {user} = useAuth();
+  const {user, signInWithGoogle } = useAuth();
   const params = useParams<RoomParams>();
   const [newQuestion, setNewQuestion] = useState('');
   const roomID = params.id;
@@ -28,7 +28,10 @@ export function Room () {
 
   async function handleSendQuestion(event: FormEvent){
     event.preventDefault();
+    sendQuestion();
+  }
 
+  async function sendQuestion(){
     if (newQuestion.trim() === '') {
       return;
     }
@@ -81,6 +84,12 @@ export function Room () {
 
         <form onSubmit= {handleSendQuestion}>
           <textarea
+          onKeyPress = {(event) => {
+            if (event.code === 'Enter') {
+              event.preventDefault();
+              sendQuestion();
+            }
+          }}
           placeholder="O que você quer perguntar"
           onChange={event => setNewQuestion(event.target.value)}
           value= {newQuestion}
@@ -93,7 +102,12 @@ export function Room () {
                 <span>{user.name}</span>
               </div>
             ) : (
-              <span>Para enviar uma pergunta, <button>faça seu login</button>.</span>
+              <span>Para enviar uma pergunta,
+                <button
+                onClick={signInWithGoogle}
+              >
+                faça seu login
+                </button>.</span>
             ) }
             <Button
               isOutlined
