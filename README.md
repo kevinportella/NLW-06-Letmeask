@@ -6,8 +6,6 @@
     <img src='./src/assets/images/capa.png'>
 </h1>
 
-<br>
-
 ## About: 
 
 letmeask is an application developed during Next Level Week Together (NLW-06) offered by [Rocketseat]🚀.
