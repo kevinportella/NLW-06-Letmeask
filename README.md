@@ -3,7 +3,7 @@
 </p>
 
 <h1 align="center">
-    <img src='./src/assets/images/Capa.svg'>
+    <img src='./src/assets/images/capa.png'>
 </h1>
 
 <br>
